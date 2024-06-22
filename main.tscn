@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://pd0qy5o4rxmd"]
+
+[ext_resource type="PackedScene" uid="uid://bji0x65qyusfv" path="res://worm.tscn" id="1_a3n5d"]
+[ext_resource type="Script" path="res://map.gd" id="1_yv7n2"]
+[ext_resource type="Script" path="res://water.gd" id="2_l6r68"]
+[ext_resource type="PackedScene" uid="uid://c3xqnq6gy4sak" path="res://fish.tscn" id="3_s1jud"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p7gdb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1kjt7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ovtvx"]
+
+[node name="Node" type="Node"]
+
+[node name="map" type="Node2D" parent="."]
+script = ExtResource("1_yv7n2")
+
+[node name="fish" parent="map" instance=ExtResource("3_s1jud")]
+top_level = true
+position = Vector2(0, 128)
+
+[node name="worm" parent="map" instance=ExtResource("1_a3n5d")]
+top_level = true
+position = Vector2(576, 232)
+
+[node name="water" type="TileMap" parent="map"]
+format = 2
+script = ExtResource("2_l6r68")
+
+[node name="TextureRect" type="TextureRect" parent="map/water"]
+modulate = Color(0.384314, 0.54902, 1, 1)
+offset_right = 1154.0
+offset_bottom = 648.0
+texture = SubResource("CanvasTexture_p7gdb")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="map/water"]
+modulate = Color(0.196078, 0.572549, 0.501961, 1)
+offset_left = 472.0
+offset_right = 680.0
+offset_bottom = 648.0
+texture = SubResource("CanvasTexture_1kjt7")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect3" type="TextureRect" parent="map/water"]
+offset_left = 464.0
+offset_right = 472.0
+offset_bottom = 24.0
+texture = SubResource("CanvasTexture_ovtvx")
+
+[node name="TextureRect4" type="TextureRect" parent="map/water"]
+offset_left = 464.0
+offset_top = 32.0
+offset_right = 472.0
+offset_bottom = 56.0
+texture = SubResource("CanvasTexture_ovtvx")
+
+[node name="TextureRect5" type="TextureRect" parent="map/water"]
+offset_left = 464.0
+offset_top = 64.0
+offset_right = 472.0
+offset_bottom = 88.0
+texture = SubResource("CanvasTexture_ovtvx")
+
+[node name="TextureRect6" type="TextureRect" parent="map/water"]
+offset_left = 464.0
+offset_top = 96.0
+offset_right = 472.0
+offset_bottom = 120.0
+texture = SubResource("CanvasTexture_ovtvx")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="map/water"]
+position = Vector2(576, 12)
+scale = Vector2(11.2, 1.2)
+enable_node_path = NodePath("")
+
+[connection signal="screen_entered" from="map/water/VisibleOnScreenEnabler2D" to="map/water" method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="map/water/VisibleOnScreenEnabler2D" to="map/water" method="_on_visible_on_screen_enabler_2d_screen_exited"]

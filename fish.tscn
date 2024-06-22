@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3xqnq6gy4sak"]
+
+[ext_resource type="Script" path="res://fish.gd" id="1_fo2ni"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_kbw0i"]
+
+[node name="fish" type="Node2D"]
+script = ExtResource("1_fo2ni")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.32549, 0.709804, 0.254902, 1)
+offset_right = 128.0
+offset_bottom = 40.0
+texture = SubResource("CanvasTexture_kbw0i")
