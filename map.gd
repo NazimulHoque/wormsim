@@ -1,6 +1,6 @@
 extends Node2D
 
-static var speed = 15
+static var speed = 9000
 
 # Called when the node enters the scene tree for the first time.
 

@@ -30,8 +30,10 @@ script = ExtResource("2_l6r68")
 
 [node name="TextureRect" type="TextureRect" parent="map/water"]
 modulate = Color(0.384314, 0.54902, 1, 1)
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = 432.0
+offset_top = 32.0
+offset_right = 728.0
+offset_bottom = 416.0
 texture = SubResource("CanvasTexture_p7gdb")
 
 [node name="TextureRect2" type="TextureRect" parent="map/water"]
@@ -68,10 +70,3 @@ offset_top = 96.0
 offset_right = 472.0
 offset_bottom = 120.0
 texture = SubResource("CanvasTexture_ovtvx")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="map/water"]
-position = Vector2(583, 8)
-scale = Vector2(2.5, 1)
-
-[connection signal="screen_entered" from="map/water/VisibleOnScreenNotifier2D" to="map/water" method="_on_visible_on_screen_entered"]
-[connection signal="screen_exited" from="map/water/VisibleOnScreenNotifier2D" to="map/water" method="_on_visible_on_screen_exited"]
