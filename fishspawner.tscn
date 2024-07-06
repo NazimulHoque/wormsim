@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca3rjjxi2werd"]
+
+[ext_resource type="Script" path="res://fishspawner.gd" id="1_7nplb"]
+
+[node name="fishspawner" type="Node2D"]
+script = ExtResource("1_7nplb")
+
+[node name="fishspawn1" type="Marker2D" parent="."]
+
+[node name="fishspawn2" type="Marker2D" parent="."]
+position = Vector2(0, 120)
+
+[node name="fishspawn3" type="Marker2D" parent="."]
+position = Vector2(0, 264)
+
+[node name="fishspawn4" type="Marker2D" parent="."]
+position = Vector2(0, 416)
+
+[node name="spawntimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="spawntimer" to="." method="_on_spawntimer_timeout"]
