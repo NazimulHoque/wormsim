@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var fish = preload("res://fish.tscn")
 #dont forget to add these to the inspector variables!
 @export  var depth = 0
 @export  var difficulty = 1
@@ -12,6 +12,7 @@ var spawn_ready = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$spawntimer.autostart = true
 	$spawntimer.start()
 
 
@@ -51,3 +52,11 @@ func spawn_type():
 		sfish.global_position = fishspawn3.global_position
 		add_child(sfish)
 	
+
+
+
+func create_fish(speed, dir):
+	var fish1 = fish.instantiate()
+	fish1.speed = speed
+	fish1.direction = dir
+	return fish1

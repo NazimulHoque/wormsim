@@ -12,14 +12,14 @@ func _ready():
 func _on_visible_on_screen_entered() -> void:
 	var newTile = self.duplicate()
 	if newTile:
-		print(newTile)
+		#print(newTile)
 		newTile.global_translate(Vector2(0,-648))
 		get_parent().add_child(newTile)
-		print(newTile.get_child(5))
+		#print(newTile.get_child(5))
 	
 
 
 func _on_visible_on_screen_exited() -> void:
-	print("deleted ")
-	print(self)
+	#print("deleted ")
+	#print(self)
 	queue_free()
