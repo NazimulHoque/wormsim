@@ -1,6 +1,6 @@
 extends Node2D
 
-var fish = preload("res://fish.tscn")
+var fish = preload("res://Scenes/fish.tscn")
 #dont forget to add these to the inspector variables!
 @export  var depth = 0
 @export  var difficulty = 1

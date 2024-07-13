@@ -1,0 +1,12 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dhcqar7of7bab"]
+
+[ext_resource type="FontFile" uid="uid://boojx1lv1284g" path="res://Resources/LilitaOne-Regular.ttf" id="1_mkj3u"]
+
+[resource]
+font = ExtResource("1_mkj3u")
+font_size = 60
+outline_size = 23
+outline_color = Color(0.490196, 0.0470588, 0, 1)
+shadow_size = 30
+shadow_color = Color(0.317647, 0.0196078, 0, 1)
+shadow_offset = Vector2(6.635, 6.67)

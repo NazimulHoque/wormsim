@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ca3rjjxi2werd"]
 
-[ext_resource type="Script" path="res://fishspawner.gd" id="1_7nplb"]
+[ext_resource type="Script" path="res://Scripts/fishspawner.gd" id="1_7nplb"]
 
 [node name="fishspawner" type="Node2D"]
 script = ExtResource("1_7nplb")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blu4as7rnfryw"
-path="res://.godot/imported/Red-Circle-PNG-Images-HD.png-2ea1a55fbd45f16486660cad06b62250.ctex"
+uid="uid://vxrkjoeoau76"
+path="res://.godot/imported/Button Yellow.png-e464dba963fcb93e28fae214faaab8b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Red-Circle-PNG-Images-HD.png"
-dest_files=["res://.godot/imported/Red-Circle-PNG-Images-HD.png-2ea1a55fbd45f16486660cad06b62250.ctex"]
+source_file="res://UI/Button Yellow.png"
+dest_files=["res://.godot/imported/Button Yellow.png-e464dba963fcb93e28fae214faaab8b6.ctex"]
 
 [params]
 

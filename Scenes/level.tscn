@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpcmgwvh3uclb"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_0pgq5"]
+[ext_resource type="PackedScene" uid="uid://sxqp5dl6p3n" path="res://Scenes/game_ui.tscn" id="2_1txv4"]
+[ext_resource type="PackedScene" uid="uid://cqx5hdoveckvp" path="res://Scenes/worm.tscn" id="3_7ivhf"]
+[ext_resource type="Texture2D" uid="uid://ddqjeoejq4506" path="res://Testing Folder (TEMP)/nippy2929_cartoon_underwater_background_minimalistic_b7f8a0de-c789-4614-8ef0-c09198a7a51c.png" id="4_k7ukk"]
+[ext_resource type="Script" path="res://Scenes/TileMap.gd" id="5_6myv6"]
+[ext_resource type="PackedScene" uid="uid://n0p4jfhmd4e" path="res://Scenes/water_shader.tscn" id="5_t4r1v"]
+
+[sub_resource type="Animation" id="Animation_fjuug"]
+resource_name = "Fade_In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oq3lf"]
+_data = {
+"Fade_In": SubResource("Animation_fjuug")
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_0pgq5")
+
+[node name="Worm" parent="." groups=["Worm"] instance=ExtResource("3_7ivhf")]
+position = Vector2(384, 768)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
+
+[node name="Game UI" parent="CanvasLayer" instance=ExtResource("2_1txv4")]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 825.0
+offset_bottom = 1733.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_oq3lf")
+}
+
+[node name="Water Shader" parent="." instance=ExtResource("5_t4r1v")]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+script = ExtResource("5_6myv6")
+
+[node name="StartingBackground" type="Sprite2D" parent="TileMap"]
+z_index = -11
+position = Vector2(284, 848)
+scale = Vector2(1.73438, 1.6875)
+texture = ExtResource("4_k7ukk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="TileMap"]
+position = Vector2(432, -8)
+scale = Vector2(7.7, 1)
+
+[connection signal="animation_finished" from="CanvasLayer/ColorRect/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="screen_entered" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_entered"]
+[connection signal="screen_exited" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_exited"]

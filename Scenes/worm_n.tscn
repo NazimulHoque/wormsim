@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bji0x65qyusfv"]
 
-[ext_resource type="Script" path="res://char_movement.gd" id="1_21vn0"]
-[ext_resource type="Texture2D" uid="uid://blu4as7rnfryw" path="res://Red-Circle-PNG-Images-HD.png" id="1_kxglo"]
+[ext_resource type="Script" path="res://Scripts/char_movement.gd" id="1_21vn0"]
+[ext_resource type="Texture2D" uid="uid://blu4as7rnfryw" path="res://Resources/Red-Circle-PNG-Images-HD.png" id="1_kxglo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_avcc6"]
 radius = 9.0
