@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://n0p4jfhmd4e"]
+
+[ext_resource type="Shader" path="res://Shader/water_shader.gdshader" id="1_s50h2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ic6gh"]
+noise_type = 2
+frequency = 0.003
+fractal_type = 2
+fractal_gain = 0.95
+fractal_weighted_strength = 0.75
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f6ixf"]
+seamless = true
+seamless_blend_skirt = 0.6
+noise = SubResource("FastNoiseLite_ic6gh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhbaa"]
+shader = ExtResource("1_s50h2")
+shader_parameter/color = Color(0.470588, 0.964706, 1, 0.32549)
+shader_parameter/speed = Vector2(0.03, 0.07)
+shader_parameter/wave_strength = 2.0
+shader_parameter/fast_noise = SubResource("NoiseTexture2D_f6ixf")
+
+[node name="Water Shader" type="Node2D"]
+
+[node name="Water Shader" type="Sprite2D" parent="."]
+z_index = -11
+material = SubResource("ShaderMaterial_jhbaa")
+position = Vector2(282, 852.5)
+scale = Vector2(15.2656, 14.7422)

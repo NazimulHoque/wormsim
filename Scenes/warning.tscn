@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://hrj8r2quarlh"]
+
+[ext_resource type="Script" path="res://Scripts/warning_quit.gd" id="1_v2l2k"]
+[ext_resource type="FontFile" uid="uid://boojx1lv1284g" path="res://Resources/LilitaOne-Regular.ttf" id="1_yrrmo"]
+[ext_resource type="Texture2D" uid="uid://bth2g7q816e" path="res://UI/Button_Green.png" id="2_6a25k"]
+[ext_resource type="Texture2D" uid="uid://cpu1lq7o4tik7" path="res://UI/Button Red.png" id="4_etfpw"]
+[ext_resource type="LabelSettings" uid="uid://cl0lle0bd2p24" path="res://Themes/button_green.res" id="4_g5s7s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mxh7p"]
+font = ExtResource("1_yrrmo")
+font_size = 65
+outline_size = 23
+outline_color = Color(0, 0.0784314, 0.223529, 1)
+shadow_size = 30
+shadow_color = Color(0, 0.0862745, 0.239216, 1)
+shadow_offset = Vector2(14.085, 12.825)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2d1y2"]
+font = ExtResource("1_yrrmo")
+font_size = 70
+outline_size = 23
+outline_color = Color(0.490196, 0.0470588, 0, 1)
+shadow_size = 30
+shadow_color = Color(0.317647, 0.0196078, 0, 1)
+shadow_offset = Vector2(6.635, 6.67)
+
+[node name="Warning" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v2l2k")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.5
+offset_top = -227.5
+offset_right = 303.5
+offset_bottom = 227.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.255, 1.255)
+pivot_offset = Vector2(303, 227)
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0107084
+anchor_right = 1.01071
+anchor_bottom = 0.235165
+grow_horizontal = 2
+pivot_offset = Vector2(310, 53)
+text = "QUIT GAME?"
+label_settings = SubResource("LabelSettings_mxh7p")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.204778
+anchor_top = 0.313407
+anchor_right = 0.795222
+anchor_bottom = 0.85956
+offset_left = -76.8
+offset_top = -42.6
+offset_right = 76.8
+offset_bottom = 63.9
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(256, 142)
+theme_override_constants/separation = 75
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Confirm" type="TextureButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_6a25k")
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/Confirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -47.5
+offset_right = 65.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YES"
+label_settings = ExtResource("4_g5s7s")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="No" type="TextureButton" parent="Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_etfpw")
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/No"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = -47.5
+offset_right = 65.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Never Mind!"
+label_settings = SubResource("LabelSettings_2d1y2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/No" to="." method="_on_no_pressed"]

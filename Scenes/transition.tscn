@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://delkvaewlhksr"]
+
+[ext_resource type="Shader" path="res://Shader/water_shader.gdshader" id="1_gupiq"]
+[ext_resource type="Script" path="res://Scripts/Transition.gd" id="3_v2jrm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h3256"]
+shader = ExtResource("1_gupiq")
+shader_parameter/color = null
+shader_parameter/speed = Vector2(0.03, 0.07)
+shader_parameter/wave_strength = 2.0
+
+[sub_resource type="Animation" id="Animation_y6osm"]
+resource_name = "Fade In"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ywb54"]
+resource_name = "Fade Out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.4, 0.4, 0.3, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_sh0j0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7l6tk"]
+_data = {
+"Fade In": SubResource("Animation_y6osm"),
+"Fade Out": SubResource("Animation_ywb54"),
+"RESET": SubResource("Animation_sh0j0")
+}
+
+[node name="Transition" type="ColorRect"]
+material = SubResource("ShaderMaterial_h3256")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("3_v2jrm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7l6tk")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
