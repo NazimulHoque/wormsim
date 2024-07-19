@@ -7,7 +7,7 @@ var speed = 100
 var direction = 1
 
 func _physics_process(delta):
-	move_local_x(5)
+	move_local_x(8)
 "
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kbw0i"]

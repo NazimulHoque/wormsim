@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dpcmgwvh3uclb"]
+[gd_scene load_steps=16 format=3 uid="uid://dpcmgwvh3uclb"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_0pgq5"]
 [ext_resource type="PackedScene" uid="uid://sxqp5dl6p3n" path="res://Scenes/game_ui.tscn" id="2_1txv4"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ddqjeoejq4506" path="res://Testing Folder (TEMP)/nippy2929_cartoon_underwater_background_minimalistic_b7f8a0de-c789-4614-8ef0-c09198a7a51c.png" id="4_k7ukk"]
 [ext_resource type="Script" path="res://Scenes/TileMap.gd" id="5_6myv6"]
 [ext_resource type="PackedScene" uid="uid://n0p4jfhmd4e" path="res://Scenes/water_shader.tscn" id="5_t4r1v"]
-[ext_resource type="PackedScene" uid="uid://ca3rjjxi2werd" path="res://Scenes/fishspawner.tscn" id="7_gatge"]
+[ext_resource type="Script" path="res://Scenes/fishmanager.gd" id="7_o0ude"]
+[ext_resource type="Script" path="res://Scripts/fishspawner.gd" id="8_knfu7"]
 [ext_resource type="PackedScene" uid="uid://c3xqnq6gy4sak" path="res://Scenes/fish.tscn" id="8_rsal5"]
 [ext_resource type="PackedScene" uid="uid://hpwn5w5bo6k" path="res://Scenes/fastfish.tscn" id="9_xwf1r"]
 [ext_resource type="PackedScene" uid="uid://bg86plom4xnyf" path="res://Scenes/slowfish.tscn" id="10_ww6ky"]
@@ -115,13 +116,33 @@ position = Vector2(432, -8)
 scale = Vector2(7.7, 1)
 metadata/_edit_lock_ = true
 
-[node name="fishspawner" parent="." instance=ExtResource("7_gatge")]
+[node name="fishmanager" type="Node2D" parent="."]
 top_level = true
-position = Vector2(-120, 240)
+script = ExtResource("7_o0ude")
+
+[node name="fishspawner" type="Node2D" parent="fishmanager"]
+script = ExtResource("8_knfu7")
 mediumfish_scene = ExtResource("8_rsal5")
 fastfish_scene = ExtResource("9_xwf1r")
 slowfish_scene = ExtResource("10_ww6ky")
 
+[node name="fishspawn1" type="Marker2D" parent="fishmanager/fishspawner"]
+position = Vector2(0, 192)
+
+[node name="fishspawn2" type="Marker2D" parent="fishmanager/fishspawner"]
+position = Vector2(0, 576)
+
+[node name="fishspawn3" type="Marker2D" parent="fishmanager/fishspawner"]
+position = Vector2(0, 1024)
+
+[node name="fishspawn4" type="Marker2D" parent="fishmanager/fishspawner"]
+position = Vector2(0, 1472)
+
+[node name="spawntimer" type="Timer" parent="fishmanager/fishspawner"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="animation_finished" from="CanvasLayer/ColorRect/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="screen_entered" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_entered"]
 [connection signal="screen_exited" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_exited"]
+[connection signal="timeout" from="fishmanager/fishspawner/spawntimer" to="fishmanager/fishspawner" method="_on_spawntimer_timeout"]
