@@ -19,5 +19,5 @@ func _physics_process(delta):
 
 
 func _on_timer_timeout():
-	print("fish has died")
+	#print("fish has died")
 	queue_free()
