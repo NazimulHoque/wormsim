@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpcmgwvh3uclb"]
+[gd_scene load_steps=17 format=3 uid="uid://dpcmgwvh3uclb"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_0pgq5"]
 [ext_resource type="PackedScene" uid="uid://sxqp5dl6p3n" path="res://Scenes/game_ui.tscn" id="2_1txv4"]
 [ext_resource type="PackedScene" uid="uid://cqx5hdoveckvp" path="res://Scenes/worm.tscn" id="3_7ivhf"]
 [ext_resource type="Texture2D" uid="uid://ddqjeoejq4506" path="res://Testing Folder (TEMP)/nippy2929_cartoon_underwater_background_minimalistic_b7f8a0de-c789-4614-8ef0-c09198a7a51c.png" id="4_k7ukk"]
+[ext_resource type="PackedScene" uid="uid://d3n0f4w31f6wt" path="res://Scenes/joystick.tscn" id="4_x80wx"]
 [ext_resource type="Script" path="res://Scenes/TileMap.gd" id="5_6myv6"]
 [ext_resource type="PackedScene" uid="uid://n0p4jfhmd4e" path="res://Scenes/water_shader.tscn" id="5_t4r1v"]
 [ext_resource type="Script" path="res://Scenes/fishmanager.gd" id="7_o0ude"]
@@ -79,6 +80,7 @@ shape = SubResource("RectangleShape2D_pknla")
 
 [node name="Worm" parent="." groups=["Worm"] instance=ExtResource("3_7ivhf")]
 position = Vector2(384, 768)
+scale = Vector2(0.25, 0.25)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["Canvas"]]
 
@@ -95,6 +97,10 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_oq3lf")
 }
+
+[node name="Joystick" parent="CanvasLayer" instance=ExtResource("4_x80wx")]
+position = Vector2(400, 1443)
+scale = Vector2(0.75, 0.75)
 
 [node name="Water Shader" parent="." instance=ExtResource("5_t4r1v")]
 metadata/_edit_lock_ = true
