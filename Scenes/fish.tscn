@@ -1,19 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3xqnq6gy4sak"]
+[gd_scene load_steps=5 format=3 uid="uid://c3xqnq6gy4sak"]
 
 [ext_resource type="Script" path="res://Scripts/fish.gd" id="1_w47jv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_kbw0i"]
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_0fo4k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4widn"]
+
 [node name="fish" type="Node2D"]
 script = ExtResource("1_w47jv")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="fish_TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.32549, 0.709804, 0.254902, 1)
 offset_right = 128.0
 offset_bottom = 40.0
 texture = SubResource("CanvasTexture_kbw0i")
 
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
+[node name="fastfish_TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.796078, 0.552941, 0.172549, 1)
+offset_right = 48.0
+offset_bottom = 16.0
+texture = SubResource("CanvasTexture_0fo4k")
+
+[node name="slowfish_TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0.341176, 0.439216, 1)
+offset_right = 192.0
+offset_bottom = 48.0
+texture = SubResource("CanvasTexture_4widn")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

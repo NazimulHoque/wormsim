@@ -5,6 +5,9 @@ extends Node2D
 
 @export  var depth = 0
 @export  var difficulty = 1
+#spawn rate
+#speed
+#type
 
 
 func _ready():

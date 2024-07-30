@@ -15,7 +15,7 @@ func _physics_process(delta):
 [node name="slowfish" type="Node2D"]
 script = SubResource("GDScript_0f60x")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="slowfish_TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 0.341176, 0.439216, 1)
 offset_right = 192.0
 offset_bottom = 48.0

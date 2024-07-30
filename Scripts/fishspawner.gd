@@ -45,29 +45,31 @@ func spawn_type():
 	randomiseSpawn()
 	
 	#spawn fish
-	if mediumfish_scene:
-		var mfish = mediumfish_scene.instantiate()
-		mfish.global_position = fishspawn1.global_position
-		add_child(mfish)
+
+	#var mfish = mediumfish_scene.instantiate()
+	var mfish = create_fish(0)
+	mfish.global_position = fishspawn1.global_position
+	add_child(mfish)
 	
-	if fastfish_scene:
-		var ffish = fastfish_scene.instantiate()
-		ffish.global_position = fishspawn2.global_position
-		add_child(ffish)
+
+	#var ffish = fastfish_scene.instantiate()
+	var ffish = create_fish(1)
+	ffish.global_position = fishspawn2.global_position
+	add_child(ffish)
 	
-	if slowfish_scene:
-		var sfish = slowfish_scene.instantiate()
-		sfish.global_position = fishspawn3.global_position
-		add_child(sfish)
+
+	#var sfish = slowfish_scene.instantiate()
+	var sfish = create_fish(2)
+	sfish.global_position = fishspawn3.global_position
+	add_child(sfish)
 	
 
 
 
-func create_fish(speed, dir, type):
+func create_fish(type = 0):
 	#this function creates fish based on type,speed and dir entered
 	var fish1 = fish.instantiate()
-	fish1.speed = speed
-	fish1.direction = dir
+	fish1.fish_type = type
 	return fish1
 
 
@@ -82,7 +84,7 @@ func randomiseSpawn():
 	# fishSpawnOffset shifts the spawn point left
 	var fishSpawnOffset = -30
 	#eventually we will use the viewport to set position bounds
-	print(get_viewport_rect().size)
+	#print(get_viewport_rect().size)
 	#print(fishspawn1.position)
 	#print(fishspawn2.position)
 	#print(fishspawn3.position)
