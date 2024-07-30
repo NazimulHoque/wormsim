@@ -3,7 +3,7 @@ extends Node2D
 var score = 0
 var score_timer: float = 0.0
 
-static var speed = 350
+static var speed = 75
 
 
 @onready var game_ui = $"CanvasLayer/Game UI"
