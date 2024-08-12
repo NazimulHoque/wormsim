@@ -15,14 +15,17 @@ class_name Fish
 #fish lifetime in seconds
 var lifetime = 2
 var fish_names = []
-var fish_type
+#0 by default, will need to get set when instantiated 
+var fish_type = 0 
+var fish_dict = {}
 
 
 
 func _ready():
-	getFishNames()
+	getFish()
 	setChildVisibility(fish_names[fish_type])
 	setFishTypeSpeed(fish_type)
+	flipFish(fish_type)
 	$Timer.wait_time = lifetime
 	$Timer.one_shot = true
 	$Timer.start()
@@ -49,18 +52,18 @@ func setChildVisibility(fname = 'name'):
 				c.set_visible(false)
 
 
-func getFishNames():
+func getFish():
 	#gets the names of all the texture_rects(fish) in the hierarchy
 	var children =  get_children()
 	for c in children:
 		if not (c is Timer):
 			fish_names.append(c.get_name())
+			fish_dict[c.get_name()] = c
 
-
-
-func setFishTypeSpeed(ftype = 0):
+func setFishTypeSpeed(type = 0):
 	# a bunch of switch statements for speed
-	match ftype:
+	#needs rework, not good if order of the fish changee in scene tree
+	match type:
 		0:
 			# fish 10
 			speed = 10	
@@ -70,4 +73,26 @@ func setFishTypeSpeed(ftype = 0):
 		2:
 			#slow fish 8
 			speed = 8
+		3:
+			#angler
+			speed = 10
+		4:
+			#blue
+			speed = 12
+		5:
+			#puffer
+			speed = 8
 
+func enableFish():
+	process_mode = 0
+
+func disableFish():
+	process_mode = 4
+
+func flipFish(type = 0):
+	var fish = fish_dict[fish_names[type]]
+	#fish is set to already flipped, this is why
+	if direction > 0:
+		fish.flip_h = true
+	else:
+		fish.flip_h = false

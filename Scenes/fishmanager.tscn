@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cf3l71s25g8sk"]
 
-[ext_resource type="Script" path="res://Scenes/fishmanager.gd" id="1_q0fpt"]
+[ext_resource type="Script" path="res://Scripts/fishmanager.gd" id="1_q0fpt"]
 [ext_resource type="Script" path="res://Scripts/fishspawner.gd" id="2_7q0w3"]
 
 [node name="fishmanager" type="Node2D"]
