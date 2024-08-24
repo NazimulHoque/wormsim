@@ -33,7 +33,7 @@ func _on_level_score_changed(score):
 			else:
 				fs.timeBetweenSpawns = 1
 		#testing
-		rule1()
+		rule1(score)
 			
 		#do stuff 
 		#set the rules of the next wave
@@ -41,7 +41,7 @@ func _on_level_score_changed(score):
 		#modify rules based on score
 
 
-func rule1():
+func rule1(score):
 	#test of rules and interface 
 	if score == 10:
 		fs.change_spawn_types([0,0,0,0])
