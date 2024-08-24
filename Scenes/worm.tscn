@@ -31,7 +31,8 @@ script = ExtResource("1_5x08i")
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_tunvu")
-speed = 600.0
+speed = 350.0
+rotation_speed = 5.0
 
 [node name="Head Sprite" type="Sprite2D" parent="Worm Head"]
 texture = ExtResource("2_gx86q")
@@ -46,6 +47,8 @@ position = Vector2(0, 200)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("4_f86jq")
+speed = 350.0
+follow_distance = 200.0
 
 [node name="Segment_Sprite 1" type="Sprite2D" parent="Segment 1"]
 texture = ExtResource("3_slslr")
@@ -59,7 +62,7 @@ position = Vector2(0, 350)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("4_f86jq")
-follow_distance = 100.0
+speed = 350.0
 
 [node name="Segment_Sprite 2" type="Sprite2D" parent="Segment 2"]
 texture = ExtResource("4_6tf83")
@@ -73,7 +76,7 @@ position = Vector2(0, 500)
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("4_f86jq")
-follow_distance = 100.0
+speed = 350.0
 
 [node name="Segment_Sprite 3" type="Sprite2D" parent="Segment 3"]
 texture = ExtResource("5_q7cca")

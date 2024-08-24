@@ -12,7 +12,7 @@ config_version=5
 
 config/name="wormsim"
 run/main_scene="res://Scenes/main.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://Resources/icon.svg"
 
 [display]
@@ -21,6 +21,7 @@ window/size/viewport_width=800
 window/size/viewport_height=1700
 window/size/window_width_override=400
 window/size/window_height_override=850
+window/stretch/mode="canvas_items"
 
 [rendering]
 
