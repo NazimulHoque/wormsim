@@ -1,7 +1,10 @@
+class_name Level
 extends Node2D
 
 var score = 0
 var score_timer: float = 0.0
+
+signal score_changed(score)
 
 static var speed = 75
 
@@ -25,6 +28,7 @@ func score_update(delta):
 	if score_timer >= 0.5:
 		score += 1
 		score_timer = 0.0
+		score_changed.emit(score)
 		game_ui.update_height(score)
 
 
@@ -34,3 +38,4 @@ func _on_animation_player_animation_finished(anim_name):
 		game_ui.update_height(score)
 		set_physics_process(true)
 		worm.enable_movement()
+

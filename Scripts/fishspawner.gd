@@ -1,7 +1,9 @@
+class_name FishSpawner
 extends Node2D
 
 
 var fish = preload("res://Scenes/fish.tscn")
+@onready var spawntimer : Timer =  $spawntimer
 #dont forget to add these to the inspector variables!
 var rng = RandomNumberGenerator.new()
 
@@ -10,44 +12,34 @@ var rng = RandomNumberGenerator.new()
 @export  var fastfish_scene: PackedScene
 @export  var slowfish_scene: PackedScene
  
-@export var timeBetweenSpawns = 3
+@export var timeBetweenSpawns: float = 3
 var spawn_ready = false
 var playAreaHeight = 1560
 
-var fishspawn1 
-var fishspawn2 
-var fishspawn3 
-var fishspawn4 
+@onready var fishspawn1 = $fishspawn1
+@onready var fishspawn2 = $fishspawn2
+@onready var fishspawn3 = $fishspawn3
+@onready var fishspawn4 = $fishspawn4
 var fishes = []
+var spawn_types = [0, 1, 2, 0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	fishspawn1 = $fishspawn1
-	fishspawn2 = $fishspawn2
-	fishspawn3 = $fishspawn3
-	fishspawn4 = $fishspawn4
-	
-	$spawntimer.set_wait_time(timeBetweenSpawns)
-	$spawntimer.autostart = true
-	$spawntimer.start()
+	spawntimer.set_wait_time(timeBetweenSpawns)
+	spawntimer.autostart = true
+	spawntimer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if spawn_ready:
-		#get marker nodes
-		randomiseSpawn(fishspawn1)
-		randomiseSpawn(fishspawn2)
-		randomiseSpawn(fishspawn3)
-		randomiseSpawn(fishspawn4)
-		spawn_fish(fishspawn1, 0)
-		spawn_fish(fishspawn2, 1)
-		spawn_fish(fishspawn3, 2)
-		spawn_ready = false
+	pass
 
 
 func _on_spawntimer_timeout():
-	spawn_ready = true
+	randomizeSpawn2()
+	spawn_fish2(spawn_types)
+	spawntimer.set_wait_time(timeBetweenSpawns)
+	
 
 
 func spawn_fish( fishspawn: Marker2D, type = 0 ):
@@ -71,7 +63,15 @@ func create_fish(type = 0, dir = 1):
 	fish.direction = dir
 	return fish
 
-func randomiseSpawn(fishspawn1: Marker2D):
+
+func create_fish2(type = 0, dir = 1, speed = 8):
+	var fish = fish.instantiate()
+	fish.fish_type = type
+	fish.direction = dir
+	fish.speed = speed
+	return fish
+
+func randomizeSpawn(fishspawn1: Marker2D):
 	#ideally they would spawn within play area
 	#spaced apart just enough to let the worm go 
 	var rngx = rng.randi_range(0, 1)
@@ -95,6 +95,30 @@ func randomiseSpawn(fishspawn1: Marker2D):
 	#fishspawn3.set_position(Vector2(fishSpawnOffset,rng3))
 	#fishspawn4.set_position(Vector2(fishSpawnOffset,rng4))
 
+func randomizeSpawn2():
+	#randomize spawns all at once
+	randomizeSpawn(fishspawn1)
+	randomizeSpawn(fishspawn2)
+	randomizeSpawn(fishspawn3)
+	randomizeSpawn(fishspawn4)
+	
+func spawn_fish2(spawntypes:Array):
+	#an interface that is used by the fishmanger to create a custom set of fish for ever spawn event
+	#should check if array is valid
+	if spawn_types:
+		spawn_fish(fishspawn1, spawntypes[0])
+		spawn_fish(fishspawn2, spawntypes[1])
+		spawn_fish(fishspawn3, spawntypes[2])
+		spawn_fish(fishspawn4, spawntypes[3])
+	
+	
 
 func pauseSpawn():
 	pass
+
+
+
+func change_spawn_types(spawntypes: Array):
+	print(spawntypes)
+	spawn_types =  spawntypes
+	

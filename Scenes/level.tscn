@@ -195,6 +195,7 @@ position = Vector2(0, 1472)
 wait_time = 3.0
 autostart = true
 
+[connection signal="score_changed" from="." to="fishmanager" method="_on_level_score_changed"]
 [connection signal="animation_finished" from="CanvasLayer/ColorRect/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="screen_entered" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_entered"]
 [connection signal="screen_exited" from="TileMap/VisibleOnScreenNotifier2D" to="TileMap" method="_on_visible_on_screen_exited"]
